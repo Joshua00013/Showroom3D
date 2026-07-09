@@ -1,4 +1,5 @@
 'use client'
+
 import CarCard from './CarCard'
 import { useEffect, useState } from 'react'
 import { supabase } from '@/lib/supabase'
@@ -7,12 +8,16 @@ type Car = {
   id: number
   car_name: string
   car_model: string
-  car_make: string
-  photo_url: string
-  model_url: string
+  make_id: number
+  photo_path: string
+  model_path: string
 }
 
-export default function CarGrid() {
+type CarGridProps = {
+  makeId: number
+}
+
+export default function CarGrid({ makeId }: CarGridProps) {
   const [cars, setCars] = useState<Car[]>([])
 
   useEffect(() => {
@@ -20,6 +25,7 @@ export default function CarGrid() {
       const { data, error } = await supabase
         .from('cars')
         .select('*')
+        .eq('make_id', makeId)
 
       if (error) {
         console.error(error)
@@ -30,7 +36,7 @@ export default function CarGrid() {
     }
 
     fetchCars()
-  }, [])
+  }, [makeId])
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-6">

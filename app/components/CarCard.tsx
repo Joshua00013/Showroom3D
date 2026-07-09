@@ -21,7 +21,7 @@ export default function CarCard({ car }: { car: any }) {
       />
 
       <div className="p-4 space-y-1">
-        <h2 className="text-lg font-bold">{car.car_name}</h2>
+        <h2 className="text-lg font-bold text-black">{car.car_name}</h2>
 
         <p className="text-sm text-gray-500">
           {car.car_make} • {car.car_model}

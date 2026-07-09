@@ -8,7 +8,7 @@ export default function Page() {
     <>
     <div className='mx-auto flex space-x-20 items-center pt-20 text-4xl'>
       <button onClick={() => router.push('/dashboard')}>Dashboard</button>
-      <button onClick={() => router.push('/cars')}>View Cars</button>
+      <button onClick={() => router.push('/makes')}>View Cars</button>
     </div>
 
     </>

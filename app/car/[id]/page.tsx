@@ -14,7 +14,12 @@ export default function CarPage() {
     const fetchCar = async () => {
       const { data } = await supabase
         .from('cars')
-        .select('*')
+        .select(`
+          *,
+          make (
+            make
+          )
+        `)
         .eq('id', id)
         .single()
 
@@ -33,10 +38,18 @@ export default function CarPage() {
       <ModelViewer path={car.model_path} color={color} />
 
       {/* UI overlay */}
-      <div className="absolute bottom-4 left-4 right-4 bg-white p-4 rounded-lg">
-        <h1 className="text-black font-bold">{car.car_name}</h1>
-        <h1 className="text-black">Make: {car.car_make}</h1>
-        <h1 className="text-black">Model: {car.car_model}</h1>
+      <div className="absolute top-1/2 right-6 -translate-y-1/2 w-80 rounded-xl bg-white/90 p-6 shadow-xl">
+        <div className="mt-4 space-y-2 text-black">
+          <p><span className="font-semibold">Make:</span> {car.make.make}</p>
+          <p><span className="font-semibold">Model:</span> {car.car_model}</p>
+          <p><span className="font-semibold">Price:</span> ₱{car.price.toLocaleString()}</p>
+          <p><span className="font-semibold">Engine Power:</span> {car.engine_power} HP</p>
+          <p><span className="font-semibold">Engine Capacity:</span> {car.engine_capacity} L</p>
+          <p><span className="font-semibold">Max Speed:</span> {car.max_speed} km/h</p>
+          <p><span className="font-semibold">Torque:</span> {car.engine_torque} Nm</p>
+          <p><span className="font-semibold">0–100 km/h:</span> {car.acceleration} s</p>
+        </div>
+
         <div className="flex">
           <h1 className="text-black">Color:</h1>
           <input
