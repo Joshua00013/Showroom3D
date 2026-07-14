@@ -6,6 +6,7 @@ export default async function Page() {
     .from('make')
     .select('*')
     .order('make')
+    console.log(makes)
 
   if (error) {
     console.error(error)
