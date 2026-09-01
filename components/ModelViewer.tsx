@@ -5,7 +5,6 @@ import { OrbitControls, Environment } from '@react-three/drei'
 import { supabase } from '@/lib/supabase'
 import Model from './Model'
 import ModelBackground from './ModelBackground'
-import Background from 'three/src/renderers/common/Background.js'
 
 type Props = {
   path: string

@@ -1,12 +1,12 @@
 import { supabase } from '@/lib/supabase'
 import Link from 'next/link'
+import MakeCard from '@/components/MakeCard'
 
 export default async function Page() {
   const { data: makes, error } = await supabase
     .from('make')
     .select('*')
     .order('make')
-    console.log(makes)
 
   if (error) {
     console.error(error)
@@ -14,7 +14,7 @@ export default async function Page() {
 
   return (
     <main>
-      <div className="flex flex-wrap gap-4">
+      {/* <div className="flex flex-wrap gap-4">
         {makes?.map((make) => (
           <Link
             key={make.id}
@@ -24,7 +24,12 @@ export default async function Page() {
             {make.make}
           </Link>
         ))}
-      </div>
+      </div> */}
+    <div className='flex justify-center items-center gap-10'>
+        <MakeCard></MakeCard>
+    </div>
     </main>
+
+    
   )
 }

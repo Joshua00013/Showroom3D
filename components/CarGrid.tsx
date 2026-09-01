@@ -11,6 +11,10 @@ type Car = {
   make_id: number
   photo_path: string
   model_path: string
+  make: {
+    make: string
+    logo_path: string
+  }
 }
 
 type CarGridProps = {
@@ -24,7 +28,13 @@ export default function CarGrid({ makeId }: CarGridProps) {
     const fetchCars = async () => {
       const { data, error } = await supabase
         .from('cars')
-        .select('*')
+        .select(`
+          *,
+          make (
+            make,
+            logo_path
+          )
+        `)
         .eq('make_id', makeId)
 
       if (error) {
