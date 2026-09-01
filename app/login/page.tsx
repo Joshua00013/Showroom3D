@@ -13,21 +13,22 @@ import { supabase } from "@/lib/supabase"
 import { useRouter } from "next/navigation"
 
 export default function Page() {
-
   const router = useRouter()
 
-  const [email,setEmail] = useState("")
+  const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
-  const handleLogin = async() => {
-    const {data, error} = await supabase.auth.signInWithPassword({
+  const handleLogin = async () => {
+    const { error } = await supabase.auth.signInWithPassword({
       email,
-      password
+      password,
     })
-    if (error){
+
+    if (error) {
       console.log(error)
       return
     }
+
     router.push("/makes")
   }
 
@@ -37,48 +38,62 @@ export default function Page() {
 
         {/* Header */}
         <div>
-          <h1 className="text-xl font-semibold">Get&apos;s started.</h1>
+          <h1 className="text-xl font-semibold">
+            Get&apos;s started.
+          </h1>
 
           <p className="mt-2 text-xs text-muted-foreground">
             Don&apos;t have an account?{" "}
-            <a href="/register" className="text-red-500">
+            <a
+              href="/register"
+              className="text-red-500"
+            >
               Sign up
             </a>
           </p>
         </div>
 
         {/* Google / Facebook */}
-        <OAuthLogin mode="signin"/>
+        <OAuthLogin mode="signin" />
 
         {/* OR divider */}
         <div className="flex items-center gap-3">
           <div className="h-px flex-1 bg-gray-300" />
-          <span className="text-xs text-gray-400">or</span>
+          <span className="text-xs text-gray-400">
+            or
+          </span>
           <div className="h-px flex-1 bg-gray-300" />
         </div>
 
         {/* Email + Password Card */}
         <Card className="rounded-md">
           <CardContent className="space-y-4 p-3">
+
             {/* Email */}
             <div className="space-y-2">
-              <Label htmlFor="email" className="text-xs">
+              <Label
+                htmlFor="email"
+                className="text-xs"
+              >
                 Email
               </Label>
 
               <Input
                 id="email"
                 type="email"
-                placeholder="uistore@gmail.com"
+                placeholder="Email"
                 className="h-10 text-xs"
-                value = {email}
-                onChange={e=>setEmail(e.target.value)}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
 
             {/* Password */}
             <div className="space-y-2">
-              <Label htmlFor="password" className="text-xs">
+              <Label
+                htmlFor="password"
+                className="text-xs"
+              >
                 Password
               </Label>
 
@@ -87,10 +102,11 @@ export default function Page() {
                 type="password"
                 placeholder="••••••••••"
                 className="h-10 text-xs"
-                value = {password}
-                onChange={e=>setPassword(e.target.value)}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
+
           </CardContent>
         </Card>
 
@@ -104,15 +120,19 @@ export default function Page() {
             <span>Remember me</span>
           </label>
 
-          <a href="/forgot-password" className="text-red-500">
+          <a
+            href="/forgot-password"
+            className="text-red-500"
+          >
             Forgot your password?
           </a>
         </div>
 
         {/* Sign in */}
-        <Button 
-        className="h-10 w-full rounded-md bg-[#ed0038] text-sm hover:bg-[#ed0038]/90"
-        onClick={handleLogin}
+        <Button
+          type="button"
+          className="h-10 w-full rounded-md bg-[#ed0038] text-sm hover:bg-[#ed0038]/90"
+          onClick={handleLogin}
         >
           Sign in
         </Button>

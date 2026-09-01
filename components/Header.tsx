@@ -85,7 +85,10 @@ export default function Header() {
         <DropdownMenu>
           <DropdownMenuTrigger
             render={
-              <button className="h-10 w-10 overflow-hidden rounded-full border-2 border-white">
+              <button
+                type="button"
+                className="h-10 w-10 cursor-pointer overflow-hidden rounded-full border-2 border-white"
+              >
                 <img
                   src="https://placehold.co/100x100/e5e7eb/6b7280?text=👤"
                   alt="Profile"
@@ -123,7 +126,7 @@ export default function Header() {
       ) : (
         <button
           onClick={() => router.push("/login")}
-          className="h-10 w-10 overflow-hidden rounded-full border-2 border-white"
+          className="h-10 w-10 cursor-pointer overflow-hidden rounded-full border-2 border-white"
         >
           <img
             src="https://placehold.co/100x100/e5e7eb/6b7280?text=👤"

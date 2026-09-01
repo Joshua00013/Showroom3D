@@ -10,7 +10,7 @@ export default async function Page({
 
   return (
     <main>
-      <div className='flex justify-center items-center gap-10 pb-10'>
+      <div className='flex justify-center items-center gap-10 pb-10 mt-10'>
         <MakeCard></MakeCard>
       </div>
       <div className = 'px-60'>
